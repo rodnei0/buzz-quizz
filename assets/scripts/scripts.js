@@ -23,7 +23,10 @@ function listarQuizzes(elemento) {
 
     const background = document.querySelectorAll(".quizzes");
     for (let i = 0; i < background.length; i++) {
-        background[i].style.backgroundImage = "url(https://img.quizur.com/f/img60229135637eb5.97078183.jpg?lastEdited=1612878137)";
+        background[i].style.cssText = 
+            `background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizzes[i].image});`+
+            `background-position: center;`+
+	        `background-size: cover;`
     }
 }
 
