@@ -24,6 +24,54 @@
         </section>
     </main>
 
+
+
+
+
+    <main class="informacoes-basicas">
+        <h1 class="h1-top">Comece pelo começo</h1>
+        <div class="container-inputs">
+            <input type="text" class="caixa-input" placeholder="Título do seu quizz">
+            <input type="text" class="caixa-input" placeholder="URL da imagem do seu quizz">
+            <input type="text" class="caixa-input" placeholder="Quantidade de perguntas do quizz">
+            <input type="text" class="caixa-input" placeholder="Quantidade de níveis do quizz">
+        </div>
+        <button class="botao-prosseguir" onclick="irParaCriarPerguntas()">Prosseguir pra criar perguntas</button>
+    </main>
+    <main class="criar-perguntas">
+        <h1 class="h1-top">Crie suas perguntas</h1>
+        <div class="container-inputs">
+            <h2 class="h2-container-inputs">Pergunta 1</h2>
+            <input type="text" class="caixa-input" placeholder="Texto da pergunta">
+            <input type="text" class="caixa-input" placeholder="Cor de fundo da pergunta">
+            <h2 class="h2-container-inputs">Resposta correta</h2>
+            <input type="text" class="caixa-input" placeholder="Resposta correta">
+            <input type="text" class="caixa-input" placeholder="URL da imagem">
+            <h2 class="h2-container-inputs">Respostas incorretas</h2>
+            <input type="text" class="caixa-input" placeholder="Resposta incorreta 1">
+            <input type="text" class="caixa-input" placeholder="URL da imagem 1">
+            <div class="separador"></div>
+            <input type="text" class="caixa-input" placeholder="Resposta incorreta 2">
+            <input type="text" class="caixa-input" placeholder="URL da imagem 2">
+            <div class="separador"></div>
+            <input type="text" class="caixa-input" placeholder="Resposta incorreta 3">
+            <input type="text" class="caixa-input" placeholder="URL da imagem 3">
+            <div class="separador"></div>
+        </div>
+        <button class="botao-prosseguir" onclick="irParaCriarNíveis()">Prosseguir pra criar níveis</button>
+    </main>
+    <main class="criar-níveis">
+        <h1 class="h1-top">Agora, decida os níveis</h1>
+        <div class="container-inputs">
+            <h2 class="h2-container-inputs">Nível 1</h2>
+            <input type="text" class="caixa-input" placeholder="Título do nível">
+            <input type="text" class="caixa-input" placeholder="% de acerto mínima">
+            <input type="text" class="caixa-input" placeholder="URL da imagem do nível">
+            <input type="text" class="caixa-input" placeholder="Descrição do nível">
+        </div>
+        <button class="botao-prosseguir">Finalizar Quizz</button>
+    </main>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="assets/scripts/scripts.js"></script>
 </body>
