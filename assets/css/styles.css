@@ -49,6 +49,36 @@ main {
     border: 1px dashed #D5D5D5;
     box-sizing: border-box;
     border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.criarQuizz h3 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    color: #B9B9B9;
+    line-height: 23px;
+}
+
+.criarQuizz .botao-criar-quizz {
+
+    text-align: center;
+    font-weight: 400;
+    font-size: 21px;
+    color: #EC362D;
+
+    border: dashed 1px #EC362D;
+    border-radius: 50px;
+
+    padding: 5px 15px;
+}
+
+.criarQuizz .botao-criar-quizz:hover {
+    cursor: pointer;
 }
 
 .todosOsQuizzes {
@@ -66,7 +96,7 @@ main {
 
 .todosOsQuizzes h2 {
     position: absolute;
-    top: 0;
+    top: -12px;
     left: 0;
 
     font-weight: bold;
@@ -115,7 +145,6 @@ main {
     color: black;
 
     margin-top: 71px;
-    margin-bottom: 27px;
 }
 
 .container-inputs {
@@ -128,6 +157,8 @@ main {
     filter: drop-shadow(0 0 0.5em rgba(0, 0, 0, 0.07));
 
     padding: 13.5px 18px;
+
+    margin-top: 27px;
 }
 
 .caixa-input {
@@ -166,6 +197,31 @@ main {
     padding-bottom: 10px;
 }
 
+.container-input-reduzido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 74px;
+    width: 600px;
+
+    background-color: white;
+    filter: drop-shadow(0 0 0.5em rgba(0, 0, 0, 0.07));
+
+    padding-left:20px;
+    padding-right: 20px;
+
+    margin-top: 27px;
+}
+
+.container-input-reduzido h2 {
+    padding-top: 10px;
+}
+
+.container-input-reduzido:hover {
+    cursor: pointer;
+}
+
 .separador{
     height: 20px;
 }
@@ -196,15 +252,31 @@ main {
 /*-----------------------DISPLAY-------------------*/
 
 .informacoes-basicas {
-    display: ;
+    display: none;
 }
 
 .criar-perguntas {
-    display: ;
+    display: none;
 }
 
 .criar-níveis {
-    display:;
+    display:none;
+}
+
+.mostrar {
+    display: flex;
+}
+
+.esconder {
+    display: none;
+}
+
+.mostrar-container-input{
+    display: flex;
+}
+
+.mostrar-container-reduzido{
+    display: flex;
 }
 
 
