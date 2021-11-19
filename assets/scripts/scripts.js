@@ -129,13 +129,13 @@ function irParaQuizz(id) {
 
 
 
-
+let qtdPerguntas;
 
 function irParaCriarPerguntas() {
 
     const tituloQuizz = document.querySelector(".titulo-quizz").value;
     /*const imagemQuizz = document.querySelector(".imagem-quizz").value;*/
-    const qtdPerguntas = document.querySelector(".qtd-perguntas").value;
+    qtdPerguntas = document.querySelector(".qtd-perguntas").value;
     const qtdNiveis = document.querySelector(".qtd-niveis").value;
     
     if(tituloQuizz.length >= 20 && tituloQuizz.length <= 65 && parseInt(qtdPerguntas) >= 3 && parseInt(qtdNiveis) >= 2) {
@@ -155,20 +155,20 @@ function irParaCriarPerguntas() {
     </div>
     <div class="container-inputs esconder" id="p${i}input">
         <h2 class="h2-container-inputs">Pergunta ${i}</h2>
-        <input type="text" class="caixa-input" placeholder="Texto da pergunta">
-        <input type="text" class="caixa-input" placeholder="Cor de fundo da pergunta">
-        <h2 class="h2-container-inputs">Resposta correta</h2>
-        <input type="text" class="caixa-input" placeholder="Resposta correta">
-        <input type="text" class="caixa-input" placeholder="URL da imagem">
-        <h2 class="h2-container-inputs">Respostas incorretas</h2>
-        <input type="text" class="caixa-input" placeholder="Resposta incorreta 1">
-        <input type="text" class="caixa-input" placeholder="URL da imagem 1">
-        <div class="separador"></div>
-        <input type="text" class="caixa-input" placeholder="Resposta incorreta 2">
-        <input type="text" class="caixa-input" placeholder="URL da imagem 2">
-        <div class="separador"></div>
-        <input type="text" class="caixa-input" placeholder="Resposta incorreta 3">
-        <input type="text" class="caixa-input" placeholder="URL da imagem 3">
+        <input type="text" class="caixa-input texto-pergunta${i}" placeholder="Texto da pergunta">
+            <input type="text" class="caixa-input cor-pergunta${i}" placeholder="Cor de fundo da pergunta">
+            <h2 class="h2-container-inputs">Resposta correta</h2>
+            <input type="text" class="caixa-input resposta-correta${i}" placeholder="Resposta correta">
+            <input type="text" class="caixa-input URL-imagem-correta${i}" placeholder="URL da imagem">
+            <h2 class="h2-container-inputs">Respostas incorretas</h2>
+            <input type="text" class="caixa-input resposta-incorreta${i}1" placeholder="Resposta incorreta 1">
+            <input type="text" class="caixa-input URL-imagem-incorreta${i}1" placeholder="URL da imagem 1">
+            <div class="separador"></div>
+            <input type="text" class="caixa-input resposta-incorreta${i}2" placeholder="Resposta incorreta 2">
+            <input type="text" class="caixa-input URL-imagem-incorreta${i}2" placeholder="URL da imagem 2">
+            <div class="separador"></div>
+            <input type="text" class="caixa-input resposta-incorreta${i}3" placeholder="Resposta incorreta 3">
+            <input type="text" class="caixa-input URL-imagem-incorreta${i}3" placeholder="URL da imagem 3">
         <div class="separador"></div>
     </div>`
         }
@@ -235,13 +235,40 @@ function mostrarInputNiveis(inputReduzido) {
     
 }
 
+let textoPergunta;
+let corPergunta;
+let respostaCorreta;
+let URLcorreta;
+let respostaIncorreta1;
+let URLincorreta1;
+let respostaIncorreta2;
+let URLincorreta2;
+let respostaIncorreta3;
+let URLincorreta3;
+let permissaoPerguntas;
+
 function irParaCriarNiveis() {
+    for(let i = 1; i <= qtdPerguntas; i++) {
+    textoPergunta = document.querySelector(`.texto-pergunta${i}`).value;
+    corPergunta = document.querySelector(`.cor-pergunta${i}`).value;
+    respostaCorreta = document.querySelector(`.cor-pergunta${i}`).value;
+    URLcorreta = document.querySelector(`.cor-pergunta${i}`).value;
+    respostaIncorreta1 = document.querySelector(`.cor-pergunta${i}`).value;
+    URLincorreta1 = document.querySelector(`.cor-pergunta${i}`).value;
+    respostaIncorreta2 = document.querySelector(`.cor-pergunta${i}`).value;
+    URLincorreta2 = document.querySelector(`.cor-pergunta${i}`).value;
+    respostaIncorreta3 = document.querySelector(`.cor-pergunta${i}`).value;
+    URLincorreta3 = document.querySelector(`.cor-pergunta${i}`).value;
+    
+    
+    }
     
     const CriarNiveis = document.querySelector(".criar-níveis");
     CriarNiveis.classList.add("mostrar");
 
     const CriarPerguntas = document.querySelector(".criar-perguntas");
     CriarPerguntas.classList.remove("mostrar");
+
 }
 
 function irParaQuizzPronto() {
