@@ -91,11 +91,15 @@ function irParaCriarPerguntas() {
 function mostrarInputPergunta(inputReduzido) {
     const mostrarInput = document.querySelector(".mostrar-container-input")
 
-    console.dir(mostrarInput)
+    const idInteiro = mostrarInput.id;
+    const numeroPergunta = idInteiro[1]
 
     if(mostrarInput !== null) {
         mostrarInput.classList.remove("mostrar-container-input")
     }
+
+    const mostrarInputReduzido = document.querySelector(`#p${numeroPergunta}`)
+    mostrarInputReduzido.classList.remove("esconder")
 
     inputReduzido.classList.add("esconder")
 
