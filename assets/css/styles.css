@@ -5,6 +5,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     padding-top: 69px;
+    background-color: #FAFAFA;
 }
 
 .topo {
@@ -138,14 +139,21 @@ main {
 
 .containerQuizz header{
     width: 100%;
+}
 
+.containerQuizz section{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    width: 760px;
 }
 
 .topoQuizz {
     width: 100%;
     height: 142px;
 
-    margin-bottom: 12px;
+    margin-bottom: 42px;
 }
 
 .opacidade {
@@ -166,6 +174,73 @@ main {
 
     color: #FFFFFF;
 }
+
+.containerPergunta {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: fit-content;
+    height: -moz-fit-content;
+    height: -webkit-fit-content;
+    
+    padding: 18px;
+    margin-bottom: 42px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.perguntaDoQuizz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    width: 688px;
+    height: 138px;
+
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 27px;
+    color: #FFFFFF;
+
+    margin-top: 28px;
+
+    background: #434CA0;
+}
+
+.respostasDoQuizz {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    width: 688px;
+}
+
+.resposta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.resposta p {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+
+    margin-top: 5px;
+
+    color: #000000;
+}
+
+.resposta img {
+    width: 330px;
+    height: 175px;
+}
+
 
 
 
@@ -218,8 +293,6 @@ main {
     font-style: italic;
     font-size: 19px;
     font-weight: 400;
-
-
 }
 
 .h2-container-inputs {
@@ -350,6 +423,33 @@ main {
     }
     .todosOsQuizzes, .criarQuizz {
         width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .containerQuizz section, .perguntaDoQuizz, .respostasDoQuizz{
+        width: 100%;
+    }
+
+    .respostasDoQuizz{
+        align-items: center;
+    }
+
+    .resposta img {
+        width: 300px;
+        height: 135px;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .resposta img {
+        width: 163px;
+        height: 113px;
+    }
+
+    .resposta p {
+        width: 163px;
     }
 }
 

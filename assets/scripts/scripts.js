@@ -28,7 +28,6 @@ function listarQuizzes(elemento) {
     }
 }
 
-
 function obterInformacoesQuizz(id) {
     const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
 
@@ -37,9 +36,13 @@ function obterInformacoesQuizz(id) {
 
 function mostrarInformacoesQuizz(elemento) {
     const quizz = elemento.data;
-    let adicionarQuiz;
+    console.dir(quizz);
+
+    let adicionarTopoQuiz;
+    let arrayDePerguntas = [];
+    let arrayDeRespostas = [];
     
-    adicionarQuiz = `
+    adicionarTopoQuiz = `
         <div class="topoQuizz" onclick="obterInformacoesQuizz()">
             <div class="opacidade">
             <p>${quizz.title}</p>
@@ -47,15 +50,50 @@ function mostrarInformacoesQuizz(elemento) {
         </div>
         `;
     
+    for (let i = 0; i < quizz.questions.length; i++) {
+        arrayDePerguntas.push(`
+            <article class="containerPergunta">   
+                 <div class="perguntaDoQuizz">${quizz.questions[i].title}</div>
+                    <div class="respostasDoQuizz">
+                    </div>
+                </div>
+            </article>
+        `);
+    }
+
     const documento = document.querySelector(".containerQuizz header");
-    documento.innerHTML = adicionarQuiz;
+    documento.innerHTML = adicionarTopoQuiz;
 
     const background = document.querySelector(".topoQuizz");
-    console.dir(background.style);
     background.style.cssText = 
         `background-image: url(${quizz.image});`+
         `background-position: center;`+
 	    `background-size: cover;`
+
+    const pergunta = document.querySelector(".containerQuizz section")
+    pergunta.innerHTML = arrayDePerguntas.join("");
+
+    
+    for (let i = 0; i < quizz.questions.length; i++) {
+        arrayDeRespostas = [];
+        for (let k = 0; k < quizz.questions[i].answers.length; k++) {
+            arrayDeRespostas.push(`
+                <div class="resposta">
+                    <img src="${quizz.questions[i].answers[k].image}" alt="imagemResposta">
+                    <p>${quizz.questions[i].answers[k].text}</p>
+                </div>
+            `);
+        }
+
+        arrayDeRespostas.sort(comparador);
+        
+        const pergunta = document.querySelectorAll(".respostasDoQuizz");
+        pergunta[i].innerHTML = arrayDeRespostas.join("");
+    }
+}
+
+function comparador() {
+    return Math.random() - 0.5;
 }
 
 
@@ -78,7 +116,6 @@ function irParaInformacoesBasicas() {
 
 function irParaQuizz(id) {
     const listaQuizzes = document.querySelector(".lista-quizzes");
-    
     listaQuizzes.classList.add("esconder");
 
     const containerQuizz = document.querySelector(".containerQuizz");
