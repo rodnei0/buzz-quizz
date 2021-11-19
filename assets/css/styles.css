@@ -7,7 +7,7 @@ body {
     padding-top: 69px;
 }
 
-header {
+.topo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,6 +118,8 @@ main {
 
     margin-bottom: 12px;
     border-radius: 5px;
+
+    background-color: red;
 }
 
 .quizzes p {
@@ -131,6 +133,40 @@ main {
 
     color: #FFFFFF;
 }
+
+/*-----------------------------TELA DO QUIZZ------------------------*/
+
+.containerQuizz header{
+    width: 100%;
+
+}
+
+.topoQuizz {
+    width: 100%;
+    height: 142px;
+
+    margin-bottom: 12px;
+}
+
+.opacidade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height:  100%;
+    background-color: black;
+    opacity: 0.6;
+}
+
+.opacidade p {
+    text-align: center;
+
+    font-size: 19px;
+    line-height: 22px;
+
+    color: #FFFFFF;
+}
+
 
 
 
@@ -283,8 +319,12 @@ main {
 /*-----------------------------RESPONSIVO------------------------*/
 
 @media (max-width: 1100px) {
-    main {
+    .lista-quizzes {
         padding: 0 18px;
+    }
+    .todosOsQuizzes {
+        justify-content: center;
+        gap: 5px;
     }
     .todosOsQuizzes, .criarQuizz {
         width: 100%;

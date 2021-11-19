@@ -5,17 +5,15 @@ function obterQuizzes() {
 }
 
 function listarQuizzes(elemento) {
-    console.dir(elemento.data);
     const quizzes = elemento.data;
     let arrayDeQuizzes = [];
     
     for (let i = 0; i < quizzes.length; i++) {
         arrayDeQuizzes.push(`
-            <div class="quizzes">
+            <div class="quizzes" onclick="irParaQuizz(${quizzes[i].id})">
                 <p>${quizzes[i].title}</p>
             </div>
-        `
-        )
+        `);
     }
     
     const documento = document.querySelector(".todosOsQuizzes");
@@ -30,7 +28,39 @@ function listarQuizzes(elemento) {
     }
 }
 
-obterQuizzes();
+
+function obterInformacoesQuizz(id) {
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
+
+    promise.then(mostrarInformacoesQuizz);
+}
+
+function mostrarInformacoesQuizz(elemento) {
+    const quizz = elemento.data;
+    let adicionarQuiz;
+    
+    adicionarQuiz = `
+        <div class="topoQuizz" onclick="obterInformacoesQuizz()">
+            <div class="opacidade">
+            <p>${quizz.title}</p>
+            </div>
+        </div>
+        `;
+    
+    const documento = document.querySelector(".containerQuizz header");
+    documento.innerHTML = adicionarQuiz;
+
+    const background = document.querySelector(".topoQuizz");
+    console.dir(background.style);
+    background.style.cssText = 
+        `background-image: url(${quizz.image});`+
+        `background-position: center;`+
+	    `background-size: cover;`
+}
+
+
+
+
 
 /*-----------------------ESCONDER-MOSTRAR TELAS-------------------*/
 
@@ -41,6 +71,28 @@ function irParaInformacoesBasicas() {
     const listaQuizzes = document.querySelector(".lista-quizzes");
     listaQuizzes.classList.add("esconder");
 }
+
+
+
+
+
+function irParaQuizz(id) {
+    const listaQuizzes = document.querySelector(".lista-quizzes");
+    
+    listaQuizzes.classList.add("esconder");
+
+    const containerQuizz = document.querySelector(".containerQuizz");
+    containerQuizz.classList.remove("esconder");
+    containerQuizz.classList.add("mostrar");
+
+    obterInformacoesQuizz(id);
+}
+
+
+
+
+
+
 
 function irParaCriarPerguntas() {
 
@@ -106,3 +158,4 @@ function mostrarInputPergunta(inputReduzido) {
 }
 
 
+obterQuizzes();
