@@ -267,7 +267,6 @@ main {
 .botao-prosseguir {
 
     height: 54px;
-    width: 368px;
 
     margin-top: 85px;
     margin-bottom: 85px;
@@ -279,10 +278,27 @@ main {
     font-size: 21px;
     font-weight: 400;
 
-    padding: 5px;
+    padding: 5px 40px;
 
     border-radius: 15px;
     border: none;
+}
+
+.botao-voltar-home {
+    color: rgb(179, 179, 179);
+    font-family: "Roboto";
+    font-size: 21px;
+    font-weight: 400;
+
+    border: none;
+
+    background-color: none;
+
+    margin-top: -60px;
+}
+
+.botao-voltar-home:hover {
+    cursor: pointer;
 }
 
 /*-----------------------DISPLAY-------------------*/
@@ -297,6 +313,10 @@ main {
 
 .criar-níveis {
     display:none;
+}
+
+.quizz-pronto{
+    display: none;
 }
 
 .mostrar {
@@ -315,7 +335,9 @@ main {
     display: flex;
 }
 
-
+.mostrar-container-input-nivel{
+    display: flex;
+}
 /*-----------------------------RESPONSIVO------------------------*/
 
 @media (max-width: 1100px) {

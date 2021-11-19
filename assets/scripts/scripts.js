@@ -108,35 +108,51 @@ function irParaCriarPerguntas() {
 
     const listaQuizzes = document.querySelector(".criar-perguntas");
     listaQuizzes.classList.add("mostrar");
-    } else {
-        alert("Preencha os dados corretamente.");
-    }
 
     const paginaPerguntas = document.querySelector(".perguntas-mutavel");
 
     for(let i = 2; i <= parseInt(qtdPerguntas); i++) {
-    paginaPerguntas.innerHTML += `<div class="container-input-reduzido" id="p${i}" onclick="mostrarInputPergunta(this)">
-    <h2 class="h2-container-inputs">Pergunta ${i}</h2>
-    <ion-icon name="create-outline"></ion-icon>
-</div>
-<div class="container-inputs esconder" id="p${i}input">
-    <h2 class="h2-container-inputs">Pergunta ${i}</h2>
-    <input type="text" class="caixa-input" placeholder="Texto da pergunta">
-    <input type="text" class="caixa-input" placeholder="Cor de fundo da pergunta">
-    <h2 class="h2-container-inputs">Resposta correta</h2>
-    <input type="text" class="caixa-input" placeholder="Resposta correta">
-    <input type="text" class="caixa-input" placeholder="URL da imagem">
-    <h2 class="h2-container-inputs">Respostas incorretas</h2>
-    <input type="text" class="caixa-input" placeholder="Resposta incorreta 1">
-    <input type="text" class="caixa-input" placeholder="URL da imagem 1">
-    <div class="separador"></div>
-    <input type="text" class="caixa-input" placeholder="Resposta incorreta 2">
-    <input type="text" class="caixa-input" placeholder="URL da imagem 2">
-    <div class="separador"></div>
-    <input type="text" class="caixa-input" placeholder="Resposta incorreta 3">
-    <input type="text" class="caixa-input" placeholder="URL da imagem 3">
-    <div class="separador"></div>
-</div>`
+        paginaPerguntas.innerHTML += `<div class="container-input-reduzido" id="p${i}" onclick="mostrarInputPergunta(this)">
+        <h2 class="h2-container-inputs">Pergunta ${i}</h2>
+        <ion-icon name="create-outline"></ion-icon>
+    </div>
+    <div class="container-inputs esconder" id="p${i}input">
+        <h2 class="h2-container-inputs">Pergunta ${i}</h2>
+        <input type="text" class="caixa-input" placeholder="Texto da pergunta">
+        <input type="text" class="caixa-input" placeholder="Cor de fundo da pergunta">
+        <h2 class="h2-container-inputs">Resposta correta</h2>
+        <input type="text" class="caixa-input" placeholder="Resposta correta">
+        <input type="text" class="caixa-input" placeholder="URL da imagem">
+        <h2 class="h2-container-inputs">Respostas incorretas</h2>
+        <input type="text" class="caixa-input" placeholder="Resposta incorreta 1">
+        <input type="text" class="caixa-input" placeholder="URL da imagem 1">
+        <div class="separador"></div>
+        <input type="text" class="caixa-input" placeholder="Resposta incorreta 2">
+        <input type="text" class="caixa-input" placeholder="URL da imagem 2">
+        <div class="separador"></div>
+        <input type="text" class="caixa-input" placeholder="Resposta incorreta 3">
+        <input type="text" class="caixa-input" placeholder="URL da imagem 3">
+        <div class="separador"></div>
+    </div>`
+        }
+    
+        const paginaNiveis = document.querySelector(".niveis-mutavel");
+    
+        for(let i = 2; i <= parseInt(qtdNiveis); i++) {
+            paginaNiveis.innerHTML += `<div class="container-input-reduzido" id="n${i}" onclick="mostrarInputNiveis(this)">
+            <h2 class="h2-container-inputs">Nível ${i}</h2>
+            <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <div class="container-inputs esconder" id="n${i}input">
+            <h2 class="h2-container-inputs">Nível ${i}</h2>
+            <input type="text" class="caixa-input" placeholder="Título do nível">
+            <input type="text" class="caixa-input" placeholder="% de acerto mínima">
+            <input type="text" class="caixa-input" placeholder="URL da imagem do nível">
+            <input type="text" class="caixa-input" placeholder="Descrição do nível">
+        </div>`
+        }
+    } else {
+        alert("Preencha os dados corretamente.");
     }
 }
 
@@ -159,6 +175,49 @@ function mostrarInputPergunta(inputReduzido) {
     const inputAparecer = document.querySelector(`#${id}input`)
     inputAparecer.classList.add("mostrar-container-input")
     
+}
+
+function mostrarInputNiveis(inputReduzido) {
+    const mostrarInput = document.querySelector(".mostrar-container-input-nivel")
+
+    const idInteiro = mostrarInput.id;
+    const numeroNivel = idInteiro[1]
+
+    if(mostrarInput !== null) {
+        mostrarInput.classList.remove("mostrar-container-input-nivel")
+    }
+
+    const mostrarInputReduzido = document.querySelector(`#n${numeroNivel}`)
+    mostrarInputReduzido.classList.remove("esconder")
+
+    inputReduzido.classList.add("esconder")
+
+    const id = inputReduzido.id 
+    const inputAparecer = document.querySelector(`#${id}input`)
+    inputAparecer.classList.add("mostrar-container-input-nivel")
+    
+}
+
+function irParaCriarNiveis() {
+    
+    const CriarNiveis = document.querySelector(".criar-níveis");
+    CriarNiveis.classList.add("mostrar");
+
+    const CriarPerguntas = document.querySelector(".criar-perguntas");
+    CriarPerguntas.classList.remove("mostrar");
+}
+
+function irParaQuizzPronto() {
+    
+    const CriarNiveis = document.querySelector(".criar-níveis");
+    CriarNiveis.classList.remove("mostrar");
+
+    const QuizzPronto = document.querySelector(".quizz-pronto");
+    QuizzPronto.classList.add("mostrar");
+}
+
+function voltarInicio() {
+    document.location.reload(true);
 }
 
 
