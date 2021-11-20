@@ -36,15 +36,12 @@ function obterInformacoesQuizz(id) {
 
 function mostrarInformacoesQuizz(elemento) {
     const quizz = elemento.data;
-    console.dir(quizz);
-
     let adicionarTopoQuiz;
     let arrayDePerguntas = [];
-    let arrayDeRespostas = [];
-    
+    let arrayDeCores = [];
+
     adicionarTopoQuiz = `
         <div class="topoQuizz" onclick="obterInformacoesQuizz()">
-            <div class="opacidade">
             <p>${quizz.title}</p>
             </div>
         </div>
@@ -59,6 +56,7 @@ function mostrarInformacoesQuizz(elemento) {
                 </div>
             </article>
         `);
+        arrayDeCores.push(`${quizz.questions[i].color}`)
     }
 
     const documento = document.querySelector(".containerQuizz header");
@@ -73,23 +71,58 @@ function mostrarInformacoesQuizz(elemento) {
     const pergunta = document.querySelector(".containerQuizz section")
     pergunta.innerHTML = arrayDePerguntas.join("");
 
-    
+
+    const corPergunta = document.querySelectorAll(".perguntaDoQuizz");
+    for (let i = 0; i < corPergunta.length; i++) {
+        corPergunta[i].style.cssText = `background-color: ${arrayDeCores[i]}`;
+    }
+
     for (let i = 0; i < quizz.questions.length; i++) {
         arrayDeRespostas = [];
         for (let k = 0; k < quizz.questions[i].answers.length; k++) {
             arrayDeRespostas.push(`
-                <div class="resposta">
+                <div class="resposta ${quizz.questions[i].answers[k].isCorrectAnswer}" onclick="marcarResposta(this)">
                     <img src="${quizz.questions[i].answers[k].image}" alt="imagemResposta">
-                    <p>${quizz.questions[i].answers[k].text}</p>
+                    <p class="textoResposta">${quizz.questions[i].answers[k].text}</p>
                 </div>
             `);
         }
 
         arrayDeRespostas.sort(comparador);
-        
+
         const pergunta = document.querySelectorAll(".respostasDoQuizz");
         pergunta[i].innerHTML = arrayDeRespostas.join("");
     }
+}
+
+let contador = 1;
+
+function marcarResposta(elemento) {
+    const pai = elemento.parentNode;
+    const resposta = pai.querySelectorAll(".resposta");
+
+    for (let i = 0; i < resposta.length; i++){
+        if (elemento !== resposta[i]) {
+            resposta[i].innerHTML += `<div class="camadaBranca"></div>`
+        }
+        if (resposta[i].classList.contains("true")) {
+            resposta[i].children[1].classList.add("textoVerde");
+        } else {
+            resposta[i].children[1].classList.add("textoVermelho");
+        }
+        resposta[i].onclick = null;
+    }
+    
+    setTimeout(scrollar, 2000, contador);
+}
+
+function scrollar(proximo) {
+    const perguntas = document.querySelectorAll(".containerPergunta")
+    if (proximo === perguntas.length) {
+        return;
+    }
+    perguntas[proximo].scrollIntoView();
+    contador++;
 }
 
 function comparador() {
@@ -109,10 +142,6 @@ function irParaInformacoesBasicas() {
     const listaQuizzes = document.querySelector(".lista-quizzes");
     listaQuizzes.classList.add("esconder");
 }
-
-
-
-
 
 function irParaQuizz(id) {
     const listaQuizzes = document.querySelector(".lista-quizzes");

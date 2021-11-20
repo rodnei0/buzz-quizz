@@ -150,28 +150,25 @@ main {
 }
 
 .topoQuizz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 100%;
     height: 142px;
+
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.6);
 
     margin-bottom: 42px;
 }
 
-.opacidade {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height:  100%;
-    background-color: black;
-    opacity: 0.6;
-}
-
-.opacidade p {
+.topoQuizz p{
     text-align: center;
 
-    font-size: 19px;
-    line-height: 22px;
-
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 27px;
+    
     color: #FFFFFF;
 }
 
@@ -207,8 +204,6 @@ main {
     color: #FFFFFF;
 
     margin-top: 28px;
-
-    background: #434CA0;
 }
 
 .respostasDoQuizz {
@@ -223,13 +218,19 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    position: relative;
+    
     margin-top: 20px;
 }
 
-.resposta p {
+.textoResposta {
     font-weight: bold;
-    font-size: 20px;
-    line-height: 23px;
+    /* font-size: 20px; */
+    font-size: fit-content;
+    line-height: 23px
+    ;
+    width: 330px;
 
     margin-top: 5px;
 
@@ -239,6 +240,25 @@ main {
 .resposta img {
     width: 330px;
     height: 175px;
+}
+
+.camadaBranca {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    background-color: white;
+    opacity: 0.75;
+}
+
+.textoVerde {
+    color: #009C22;
+}
+
+.textoVermelho {
+    color: #FF4B4B;
 }
 
 
@@ -448,7 +468,7 @@ main {
         height: 113px;
     }
 
-    .resposta p {
+    .textoResposta {
         width: 163px;
     }
 }
