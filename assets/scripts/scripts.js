@@ -125,10 +125,6 @@ function irParaQuizz(id) {
     obterInformacoesQuizz(id);
 }
 
-
-
-
-
 let qtdPerguntas;
 
 function irParaCriarPerguntas() {
@@ -245,7 +241,7 @@ let respostaIncorreta2;
 let URLincorreta2;
 let respostaIncorreta3;
 let URLincorreta3;
-let permissaoPerguntas;
+let permissaoPerguntas = 0;
 
 function irParaCriarNiveis() {
     for(let i = 1; i <= qtdPerguntas; i++) {
@@ -260,15 +256,21 @@ function irParaCriarNiveis() {
     respostaIncorreta3 = document.querySelector(`.cor-pergunta${i}`).value;
     URLincorreta3 = document.querySelector(`.cor-pergunta${i}`).value;
     
-    
+        if(textoPergunta.length >= 20
+            && verificarcor()
+            && respostaCorreta !== ""
+            && respostaIncorreta1 !== "") {
+            permissaoPerguntas++;
+        }
     }
     
+    if(permissaoPerguntas === qtdPerguntas) {
     const CriarNiveis = document.querySelector(".criar-níveis");
     CriarNiveis.classList.add("mostrar");
 
     const CriarPerguntas = document.querySelector(".criar-perguntas");
     CriarPerguntas.classList.remove("mostrar");
-
+    }
 }
 
 function irParaQuizzPronto() {
@@ -284,5 +286,6 @@ function voltarInicio() {
     document.location.reload(true);
 }
 
-
 obterQuizzes();
+
+
