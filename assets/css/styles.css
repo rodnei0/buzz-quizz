@@ -78,7 +78,7 @@ main {
     padding: 5px 15px;
 }
 
-.criarQuizz .botao-criar-quizz:hover {
+.criarQuizz .botao-criar-quizz, .quizzes, .resposta, .reiniciar, .voltar:hover {
     cursor: pointer;
 }
 
@@ -150,6 +150,12 @@ main {
     flex-wrap: wrap;
 
     width: 760px;
+}
+
+.containerQuizz footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .topoQuizz {
@@ -291,6 +297,31 @@ main {
     font-size: 19px;
     line-height: 25px;
     color: #484848;
+}
+
+.reiniciar {
+    font-size: 21px;
+    line-height: 25px;
+    color: #FFF5F4;
+
+    width: 260.38px;
+    height: 52px;
+    margin-top: 57px;
+    margin-bottom: 16px;
+
+    border: none;
+    background: #EC362D;
+    border-radius: 15px;
+}
+
+.voltar {
+    font-size: 21px;
+    line-height: 25px;
+    color: #818181;
+
+    background-color: #FAFAFA;
+    margin-bottom: 16px;
+    border: none;
 }
  
 
@@ -478,8 +509,12 @@ main {
 }
 
 @media (max-width: 760px) {
-    .containerQuizz section, .perguntaDoQuizz, .respostasDoQuizz, .tituloFinalizar{
+    .containerQuizz section, .perguntaDoQuizz, .respostasDoQuizz, .tituloFinalizar, .corpoFinalizar{
         width: 100%;
+    }
+
+    .corpoFinalizar {
+        flex-wrap: wrap;
     }
 
     .respostasDoQuizz{
