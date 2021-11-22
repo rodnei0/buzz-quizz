@@ -322,6 +322,10 @@ let URLincorreta3;
 let permissaoPerguntas = 0;
 
 function irParaCriarNiveis() {
+
+    const verificarHexa = /^[#]([0-9]|[a-f]){6}/i;
+    const verificarURL = /^http:|https:/i;
+
     for(let i = 1; i <= qtdPerguntas; i++) {
     textoPergunta = document.querySelector(`.texto-pergunta${i}`).value;
     corPergunta = document.querySelector(`.cor-pergunta${i}`).value;
@@ -367,3 +371,8 @@ function voltarInicio() {
 obterQuizzes();
 
 
+
+const URL = "algumacoisaaimano"
+const sla = "#f23a56";
+
+console.log(verificarURL.test(URL));
