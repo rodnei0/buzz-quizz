@@ -35,9 +35,12 @@ function obterInformacoesQuizz(id) {
 }
 
 let arrayDeNiveis = [];
+let quizz = null;
 
 function mostrarInformacoesQuizz(elemento) {
-    const quizz = elemento.data;
+    if (quizz === null) {
+        quizz = elemento.data;
+    }
     let adicionarTopoQuiz;
     let arrayDePerguntas = [];
     let arrayDeCores = [];
@@ -62,6 +65,7 @@ function mostrarInformacoesQuizz(elemento) {
 
     const documento = document.querySelector(".containerQuizz header");
     documento.innerHTML = adicionarTopoQuiz;
+    // documento.scrollIntoView();
 
     const background = document.querySelector(".topoQuizz");
     background.style.cssText = 
@@ -157,6 +161,17 @@ function inserirPontuacao(porcentagem, nivel) {
     `;
     const finalizar = document.querySelector(".containerFinalizar");
     finalizar.scrollIntoView();
+}
+
+function reiniciarQuizz() {
+    corretas = 0;
+    contador = 0;
+    mostrarInformacoesQuizz(quizz);
+    scrollar(contador);
+}
+
+function voltarHome() {
+    window.location.reload();
 }
 
 function comparador() {
