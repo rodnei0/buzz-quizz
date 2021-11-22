@@ -34,11 +34,14 @@ function obterInformacoesQuizz(id) {
     promise.then(mostrarInformacoesQuizz);
 }
 
+let arrayDeNiveis = [];
+
 function mostrarInformacoesQuizz(elemento) {
     const quizz = elemento.data;
     let adicionarTopoQuiz;
     let arrayDePerguntas = [];
     let arrayDeCores = [];
+    arrayDeNiveis = quizz.levels;
 
     adicionarTopoQuiz = `
         <div class="topoQuizz" onclick="obterInformacoesQuizz()">
@@ -50,10 +53,8 @@ function mostrarInformacoesQuizz(elemento) {
     for (let i = 0; i < quizz.questions.length; i++) {
         arrayDePerguntas.push(`
             <article class="containerPergunta">   
-                 <div class="perguntaDoQuizz">${quizz.questions[i].title}</div>
-                    <div class="respostasDoQuizz">
-                    </div>
-                </div>
+                <div class="perguntaDoQuizz">${quizz.questions[i].title}</div>
+                <div class="respostasDoQuizz"></div>
             </article>
         `);
         arrayDeCores.push(`${quizz.questions[i].color}`)
@@ -68,7 +69,7 @@ function mostrarInformacoesQuizz(elemento) {
         `background-position: center;`+
 	    `background-size: cover;`
 
-    const pergunta = document.querySelector(".containerQuizz section")
+    const pergunta = document.querySelector(".containerQuizz section");
     pergunta.innerHTML = arrayDePerguntas.join("");
 
 
@@ -96,8 +97,13 @@ function mostrarInformacoesQuizz(elemento) {
 }
 
 let contador = 1;
+let corretas = 0;
 
 function marcarResposta(elemento) {
+    if (elemento.classList.contains("true")) {
+        corretas++;
+    }
+    
     const pai = elemento.parentNode;
     const resposta = pai.querySelectorAll(".resposta");
 
@@ -119,10 +125,38 @@ function marcarResposta(elemento) {
 function scrollar(proximo) {
     const perguntas = document.querySelectorAll(".containerPergunta")
     if (proximo === perguntas.length) {
+        checarPontuacao(perguntas.length);
         return;
     }
     perguntas[proximo].scrollIntoView();
     contador++;
+}
+
+function checarPontuacao(numPerguntas) {
+    let porcentagem = (corretas / numPerguntas) * 100;
+    porcentagem = Math.round(porcentagem);
+    
+    for (let i = arrayDeNiveis.length; i > 0; i--) {
+        if (porcentagem >= arrayDeNiveis[i-1].minValue) {
+            inserirPontuacao(porcentagem, i);
+            return;
+        }
+    }
+}
+
+function inserirPontuacao(porcentagem, nivel) {
+    const inserir = document.querySelector(".containerQuizz section");
+    inserir.innerHTML += `
+        <article class="containerFinalizar">   
+            <div class="tituloFinalizar">${porcentagem}% de acerto: ${arrayDeNiveis[nivel-1].title}</div>
+            <div class="corpoFinalizar">
+                <img src="${arrayDeNiveis[nivel-1].image}" alt=""></img>
+                <div class="textoFinalizar">${arrayDeNiveis[nivel-1].text}</div>
+            </div>
+        </article>
+    `;
+    const finalizar = document.querySelector(".containerFinalizar");
+    finalizar.scrollIntoView();
 }
 
 function comparador() {
