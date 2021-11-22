@@ -42,7 +42,7 @@
         <h1 class="h1-top">Comece pelo começo</h1>
         <div class="container-inputs">
             <input type="text" class="caixa-input titulo-quizz" placeholder="Título do seu quizz">
-            <input type="text" class="caixa-input imagem-quiz" placeholder="URL da imagem do seu quizz">
+            <input type="text" class="caixa-input imagem-quizz" placeholder="URL da imagem do seu quizz">
             <input type="text" class="caixa-input qtd-perguntas" placeholder="Quantidade de perguntas do quizz">
             <input type="text" class="caixa-input qtd-niveis" placeholder="Quantidade de níveis do quizz">
         </div>
@@ -85,15 +85,15 @@
         </div>
         <div class="container-inputs esconder mostrar-container-input-nivel" id="n1input">
             <h2 class="h2-container-inputs">Nível 1</h2>
-            <input type="text" class="caixa-input" placeholder="Título do nível">
-            <input type="text" class="caixa-input" placeholder="% de acerto mínima">
-            <input type="text" class="caixa-input" placeholder="URL da imagem do nível">
-            <input type="text" class="caixa-input" placeholder="Descrição do nível">
+            <input type="text" class="caixa-input titulo-nivel1" placeholder="Título do nível">
+            <input type="text" class="caixa-input acerto-nivel1" placeholder="% de acerto mínima">
+            <input type="text" class="caixa-input URL-nivel1" placeholder="URL da imagem do nível">
+            <input type="text" class="caixa-input descricao-nivel1" placeholder="Descrição do nível">
         </div>
         <div class="niveis-mutavel">
 
         </div>
-        <button class="botao-prosseguir" onclick="irParaQuizzPronto()">Finalizar Quizz</button>
+        <button class="botao-prosseguir" onclick="finalizarQuizz()">Finalizar Quizz</button>
     </main>
     <main class="quizz-pronto">
         <h1 class="h1-top">Seu Quizz está pronto!</h1>

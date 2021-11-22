@@ -204,15 +204,18 @@ function irParaQuizz(id) {
 }
 
 let qtdPerguntas;
+let qtdNiveis;
 
 function irParaCriarPerguntas() {
 
+    const verificarURL = /^http:|https:/i;
+
     const tituloQuizz = document.querySelector(".titulo-quizz").value;
-    /*const imagemQuizz = document.querySelector(".imagem-quizz").value;*/
+    const imagemQuizz = document.querySelector(".imagem-quizz").value;
     qtdPerguntas = document.querySelector(".qtd-perguntas").value;
-    const qtdNiveis = document.querySelector(".qtd-niveis").value;
+    qtdNiveis = document.querySelector(".qtd-niveis").value;
     
-    if(tituloQuizz.length >= 20 && tituloQuizz.length <= 65 && parseInt(qtdPerguntas) >= 3 && parseInt(qtdNiveis) >= 2) {
+    if(tituloQuizz.length >= 20 && tituloQuizz.length <= 65 && parseInt(qtdPerguntas) >= 3 && parseInt(qtdNiveis) >= 2 && verificarURL.test(imagemQuizz)) {
 
     const infosBasicas = document.querySelector(".informacoes-basicas");
     infosBasicas.classList.remove("mostrar");
@@ -256,10 +259,10 @@ function irParaCriarPerguntas() {
         </div>
         <div class="container-inputs esconder" id="n${i}input">
             <h2 class="h2-container-inputs">Nível ${i}</h2>
-            <input type="text" class="caixa-input" placeholder="Título do nível">
-            <input type="text" class="caixa-input" placeholder="% de acerto mínima">
-            <input type="text" class="caixa-input" placeholder="URL da imagem do nível">
-            <input type="text" class="caixa-input" placeholder="Descrição do nível">
+            <input type="text" class="caixa-input titulo-nivel${i}" placeholder="Título do nível">
+            <input type="text" class="caixa-input acerto-nivel${i}" placeholder="% de acerto mínima">
+            <input type="text" class="caixa-input URL-nivel${i}" placeholder="URL da imagem do nível">
+            <input type="text" class="caixa-input descricao-nivel${i}" placeholder="Descrição do nível">
         </div>`
         }
     } else {
@@ -329,39 +332,99 @@ function irParaCriarNiveis() {
     for(let i = 1; i <= qtdPerguntas; i++) {
     textoPergunta = document.querySelector(`.texto-pergunta${i}`).value;
     corPergunta = document.querySelector(`.cor-pergunta${i}`).value;
-    respostaCorreta = document.querySelector(`.cor-pergunta${i}`).value;
-    URLcorreta = document.querySelector(`.cor-pergunta${i}`).value;
-    respostaIncorreta1 = document.querySelector(`.cor-pergunta${i}`).value;
-    URLincorreta1 = document.querySelector(`.cor-pergunta${i}`).value;
-    respostaIncorreta2 = document.querySelector(`.cor-pergunta${i}`).value;
-    URLincorreta2 = document.querySelector(`.cor-pergunta${i}`).value;
-    respostaIncorreta3 = document.querySelector(`.cor-pergunta${i}`).value;
-    URLincorreta3 = document.querySelector(`.cor-pergunta${i}`).value;
+    respostaCorreta = document.querySelector(`.resposta-correta${i}`).value;
+    URLcorreta = document.querySelector(`.URL-imagem-correta${i}`).value;
+    respostaIncorreta1 = document.querySelector(`.resposta-incorreta${i}1`).value;
+    URLincorreta1 = document.querySelector(`.URL-imagem-incorreta${i}1`).value;
+    respostaIncorreta2 = document.querySelector(`.resposta-incorreta${i}2`).value;
+    URLincorreta2 = document.querySelector(`.URL-imagem-incorreta${i}2`).value;
+    respostaIncorreta3 = document.querySelector(`.resposta-incorreta${i}3`).value;
+    URLincorreta3 = document.querySelector(`.URL-imagem-incorreta${i}3`).value;
     
         if(textoPergunta.length >= 20
-            && verificarcor()
+            && verificarHexa.test(corPergunta)
             && respostaCorreta !== ""
-            && respostaIncorreta1 !== "") {
+            && respostaIncorreta1 !== ""
+            && verificarURL.test(URLcorreta)) {
             permissaoPerguntas++;
         }
     }
+
+    console.log(permissaoPerguntas);
+    console.log(qtdPerguntas);
     
-    if(permissaoPerguntas === qtdPerguntas) {
+    if(permissaoPerguntas == qtdPerguntas) {
     const CriarNiveis = document.querySelector(".criar-níveis");
     CriarNiveis.classList.add("mostrar");
 
     const CriarPerguntas = document.querySelector(".criar-perguntas");
     CriarPerguntas.classList.remove("mostrar");
+    } else {
+        alert("Preencha os dados corretamente.");
+        permissaoPerguntas = 0;
     }
 }
 
-function irParaQuizzPronto() {
-    
-    const CriarNiveis = document.querySelector(".criar-níveis");
-    CriarNiveis.classList.remove("mostrar");
+let permissaoNiveis = 0;
+let tituloNivel;
+let acertoMinimo;
+let urlImagemNivel;
+let descricaoNivel;
+let contador0 = 0
+let verifica0;
 
-    const QuizzPronto = document.querySelector(".quizz-pronto");
-    QuizzPronto.classList.add("mostrar");
+function verificar0 () {
+
+    for(let i = 1; i <= qtdNiveis; i++) {
+        acertoMinimo = document.querySelector(`.acerto-nivel${i}`).value;
+
+        if(acertoMinimo == 0) {
+            contador0++
+        }
+    }
+
+    if(contador0 > 0) {
+        verifica0 = true;
+    } else {
+        verifica0 = false;
+    }
+
+    console.log(verifica0);
+}
+
+
+
+function finalizarQuizz() {
+
+    const verificarURL = /^http:|https:/i;
+    verificar0();
+
+    for(let i = 1; i <= qtdNiveis; i++) {
+    tituloNivel = document.querySelector(`.titulo-nivel${i}`).value;
+    acertoMinimo = document.querySelector(`.acerto-nivel${i}`).value;
+    urlImagemNivel = document.querySelector(`.URL-nivel${i}`).value;
+    descricaoNivel = document.querySelector(`.descricao-nivel${i}`).value;
+    
+        if(tituloNivel.length >= 10
+            && acertoMinimo >=0
+            && acertoMinimo <=100
+            && verificarURL.test(urlImagemNivel)
+            && descricaoNivel.length >= 30
+            && verifica0) {
+            permissaoNiveis++;
+        }
+    }
+    
+    if(permissaoNiveis == qtdNiveis) {
+        const CriarNiveis = document.querySelector(".criar-níveis");
+        CriarNiveis.classList.remove("mostrar");
+    
+        const QuizzPronto = document.querySelector(".quizz-pronto");
+        QuizzPronto.classList.add("mostrar");
+    } else {
+        alert("Preencha os dados corretamente.");
+        permissaoNiveis = 0;
+    }
 }
 
 function voltarInicio() {
@@ -371,7 +434,7 @@ function voltarInicio() {
 obterQuizzes();
 
 
-
+const verificarURL = /^http:|https:/i;
 const URL = "algumacoisaaimano"
 const sla = "#f23a56";
 
