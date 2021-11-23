@@ -449,9 +449,12 @@ function finalizarQuizz() {
 
     const enviarQuizz = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', objQuizz);
 
+
     const quizz = JSON.stringify(objQuizz);
     localStorage.setItem(tituloQuizz, quizz);
 }
+
+
 
 function voltarInicio() {
     document.location.reload(true);
