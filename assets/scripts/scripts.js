@@ -449,6 +449,8 @@ function finalizarQuizz() {
 
     const enviarQuizz = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', objQuizz);
 
+    const quizz = JSON.stringify(objQuizz);
+    localStorage.setItem(tituloQuizz, quizz);
 }
 
 function voltarInicio() {
@@ -459,11 +461,3 @@ obterQuizzes();
 
 
 const verificarURL = /^http:|https:/i;
-const URL = "algumacoisaaimano"
-const sla = "#f23a56";
-
-console.log(verificarURL.test(URL));
-
-console.log(arrayNiveis);
-
-console.log(parseInt('9'));
