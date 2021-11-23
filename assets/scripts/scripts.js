@@ -451,6 +451,9 @@ function finalizarQuizz() {
 
     const quizz = JSON.stringify(objQuizz);
     localStorage.setItem(tituloQuizz, quizz);
+
+    const imgfinal = document.querySelector(".imagem-quizz-pronto");
+    imgfinal.innerHTML += `<img src="${imagemQuizz}" alt="imagem quizz">`
 }
 
 function voltarInicio() {
