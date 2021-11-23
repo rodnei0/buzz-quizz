@@ -8,20 +8,28 @@ function listarQuizzes(elemento) {
     const quizzes = elemento.data;
     let arrayDeQuizzes = [];
     let arrayDeQuizzesDoUsuario = [];
+    let taSalvo = false;
 
     if (localStorage.length > 0 ) {
         const idsSerializados = localStorage.getItem("id");
         idQuizzesDoUsuario = JSON.parse(idsSerializados);
-
-        console.log("entrei nessa bosta pq tem localstorage");
-        const criarQuizz = document.querySelector(".criarQuizz");
-        criarQuizz.classList.add("esconder");
-        const quizzesDoUsuario = document.querySelector(".quizzesDoUsuario");
-        quizzesDoUsuario.classList.remove("esconder");
-        quizzesDoUsuario.classList.add("mostrar");
+        for (let i = 0; i < quizzes.length; i++) {
+            for (let k = 0; k < idQuizzesDoUsuario.length; k++) {
+                if (idQuizzesDoUsuario[k] === quizzes[i].id) {
+                    taSalvo = true;
+                }
+            }
+        }
+        if (taSalvo) {
+            const criarQuizz = document.querySelector(".criarQuizz");
+            criarQuizz.classList.add("esconder");
+            const quizzesDoUsuario = document.querySelector(".quizzesDoUsuario");
+            quizzesDoUsuario.classList.remove("esconder");
+            quizzesDoUsuario.classList.add("mostrar");
+        } else {
+            localStorage.clear();
+        }
     }
-
-    console.dir(idQuizzesDoUsuario);
     
     for (let i = 0; i < quizzes.length; i++) {
         if (localStorage.length > 0) {
@@ -154,11 +162,7 @@ function marcarResposta(elemento) {
     
     setTimeout(scrollar, 2000, contador);
     const perguntas = document.querySelectorAll(".containerPergunta")
-    console.log("marquei");
-    console.log(contador);
-    console.log(perguntas.length);
     if (contador === perguntas.length) {
-        console.log("entrei");
         checarPontuacao(perguntas.length);
     }
     contador++;
@@ -166,7 +170,7 @@ function marcarResposta(elemento) {
 
 function scrollar(proximo) {
     const perguntas = document.querySelectorAll(".containerPergunta")
-    if (proximo > perguntas.length) {
+    if (proximo === perguntas.length) {
         const finalizar = document.querySelector(".containerFinalizar");
         finalizar.scrollIntoView();
     } else {
@@ -253,6 +257,7 @@ function irParaCriarPerguntas() {
     imagemQuizz = document.querySelector(".imagem-quizz").value;
     qtdPerguntas = document.querySelector(".qtd-perguntas").value;
     qtdNiveis = document.querySelector(".qtd-niveis").value;
+    qtdNiveis = parseInt(qtdNiveis);
     
     if(tituloQuizz.length >= 20 
         && tituloQuizz.length <= 65 
@@ -494,7 +499,6 @@ function sucessoEnviarQuizz(elemento) {
 }
 
 function acessarQuizz() {
-    console.log("entrei");
     const listaQuizzes = document.querySelector(".quizz-pronto");
     listaQuizzes.classList.remove("mostrar");
     listaQuizzes.classList.add("esconder");
