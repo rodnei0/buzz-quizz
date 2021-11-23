@@ -438,6 +438,15 @@ main {
     height: 20px;
 }
 
+.imagem-quizz-pronto img {
+    width: 500px;
+    height: 266px;
+
+    margin-top: 40px;
+
+    border-radius: 20px;
+}
+
 /*-----------------------BOTÕES-------------------*/
 
 .botao-prosseguir {
@@ -563,7 +572,7 @@ main {
 @media (max-width: 600px) {
 
     .container-inputs {
-        width: 100%;
+        width: 100vw;
     }
 
     .container-input-reduzido {

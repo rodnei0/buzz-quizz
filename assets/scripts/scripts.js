@@ -336,7 +336,7 @@ function mostrarInputPergunta(inputReduzido) {
     const id = inputReduzido.id 
     const inputAparecer = document.querySelector(`#${id}input`)
     inputAparecer.classList.add("mostrar-container-input")
-    
+    inputAparecer.scrollIntoView();
 }
 
 function mostrarInputNiveis(inputReduzido) {
@@ -515,5 +515,3 @@ function voltarInicio() {
 }
 
 obterQuizzes();
-
-const verificarURL = /^http:|https:/i;
