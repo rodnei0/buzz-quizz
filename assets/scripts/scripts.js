@@ -1,3 +1,18 @@
+let arrayDeNiveis = [];
+let quizz = null;
+let contador = 1;
+let corretas = 0;
+let qtdPerguntas;
+let qtdNiveis;
+let tituloQuizz;
+let imagemQuizz;
+let permissaoPerguntas = 0;
+let arrayPerguntas = [];
+let arrayPerguntasPush;
+let arrayNiveis = [];
+let arrayNiveisPush;
+let idQuizzesDoUsuario = []
+
 function obterQuizzes() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
 
@@ -68,9 +83,6 @@ function obterInformacoesQuizz(id) {
     promise.then(mostrarInformacoesQuizz);
 }
 
-let arrayDeNiveis = [];
-let quizz = null;
-
 function mostrarInformacoesQuizz(elemento) {
     if (quizz === null) {
         quizz = elemento.data;
@@ -132,9 +144,6 @@ function mostrarInformacoesQuizz(elemento) {
         pergunta[i].innerHTML = arrayDeRespostas.join("");
     }
 }
-
-let contador = 1;
-let corretas = 0;
 
 function marcarResposta(elemento) {
     if (elemento.classList.contains("true")) {
@@ -215,10 +224,6 @@ function comparador() {
     return Math.random() - 0.5;
 }
 
-
-
-
-
 /*-----------------------ESCONDER-MOSTRAR TELAS-------------------*/
 
 function irParaInformacoesBasicas() {
@@ -239,11 +244,6 @@ function irParaQuizz(id) {
 
     obterInformacoesQuizz(id);
 }
-
-let qtdPerguntas;
-let qtdNiveis;
-let tituloQuizz;
-let imagemQuizz;
 
 function irParaCriarPerguntas() {
 
@@ -356,12 +356,6 @@ function mostrarInputNiveis(inputReduzido) {
     
 }
 
-let permissaoPerguntas = 0;
-let arrayPerguntas = [];
-let arrayPerguntasPush;
-let arrayNiveis = [];
-let arrayNiveisPush;
-
 function irParaCriarNiveis() {
 
     const verificarHexa = /^[#]([0-9]|[a-f]){6}/i;
@@ -437,8 +431,6 @@ function verificar0 () {
     }
 }
 
-
-
 function finalizarQuizz() {
 
     const verificarURL = /^http:|https:/i;
@@ -463,7 +455,7 @@ function finalizarQuizz() {
         }
     }
     
-    if(permissaoNiveis === qtdNiveis) {
+    if(permissaoNiveis == qtdNiveis) {
         const CriarNiveis = document.querySelector(".criar-níveis");
         CriarNiveis.classList.remove("mostrar");
     
@@ -483,8 +475,6 @@ function finalizarQuizz() {
     const imgfinal = document.querySelector(".imagem-quizz-pronto");
     imgfinal.innerHTML = `<div class="gradientePreto"></div><img src="${imagemQuizz}" alt="imagem quizz">`
 }
-
-let idQuizzesDoUsuario = []
 
 function sucessoEnviarQuizz(elemento) {
     idQuizzesDoUsuario.push(elemento.data.id);
