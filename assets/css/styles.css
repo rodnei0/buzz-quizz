@@ -440,11 +440,11 @@ main {
 
 .imagem-quizz-pronto img {
     width: 500px;
-    height: 266px;
+    
 
     margin-top: 40px;
 
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 /*-----------------------BOTÕES-------------------*/
@@ -577,5 +577,9 @@ main {
 
     .container-input-reduzido {
         width: 100vw;
+    }
+
+    .imagem-quizz-pronto img {
+        width: 90vw;
     }
 }
