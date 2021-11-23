@@ -82,7 +82,7 @@ main {
     cursor: pointer;
 }
 
-.todosOsQuizzes {
+.todosOsQuizzes, .quizzesDoUsuario {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -95,11 +95,32 @@ main {
     margin-top: 77px;
 }
 
-.todosOsQuizzes h2 {
+.todosOsQuizzes h2{
     position: absolute;
     top: -12px;
     left: 0;
 
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+
+    color: #000000;
+}
+
+.flex {
+    position: absolute;
+    top: -12px;
+    left: 0;
+    display: flex;
+    align-items: center;
+}
+
+.flex ion-icon {
+    font-size: 30px;
+    color: #EC362D;;
+}
+
+.flex h2 {
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
@@ -508,11 +529,11 @@ main {
     .lista-quizzes {
         padding: 0 18px;
     }
-    .todosOsQuizzes {
+    .todosOsQuizzes, .quizzesDoUsuario {
         justify-content: center;
         gap: 5px;
     }
-    .todosOsQuizzes, .criarQuizz {
+    .todosOsQuizzes, .quizzesDoUsuario, .criarQuizz {
         width: 100%;
     }
 }
