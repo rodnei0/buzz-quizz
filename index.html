@@ -20,6 +20,12 @@
             <h3>Você não criou nenhum<br>quizz ainda :(</h3>
             <div class="botao-criar-quizz" onclick="irParaInformacoesBasicas()">Criar Quizz</div>
         </section>
+        <section class="quizzesDoUsuario esconder">
+            <div class="flex">
+                <h2>Seus Quizzes</h2><ion-icon name="add-circle" onclick="irParaInformacoesBasicas()">
+                </ion-icon></h2>
+            </div>
+        </section>
         <section class="todosOsQuizzes">
             <h2>Todos os Quizzes</h2>
         </section>
@@ -100,7 +106,7 @@
         <div class="imagem-quizz-pronto">
             <img src="" alt="imagem quizz">
         </div>
-        <button class="botao-prosseguir">Acessar Quizz</button>
+        <button class="botao-prosseguir" onclick="acessarQuizz()">Acessar Quizz</button>
         <h3 class="botao-voltar-home" onclick="voltarInicio()">Voltar pra home</h3>
     </main>
 
