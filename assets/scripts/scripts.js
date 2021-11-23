@@ -205,17 +205,23 @@ function irParaQuizz(id) {
 
 let qtdPerguntas;
 let qtdNiveis;
+let tituloQuizz;
+let imagemQuizz;
 
 function irParaCriarPerguntas() {
 
     const verificarURL = /^http:|https:/i;
 
-    const tituloQuizz = document.querySelector(".titulo-quizz").value;
-    const imagemQuizz = document.querySelector(".imagem-quizz").value;
+    tituloQuizz = document.querySelector(".titulo-quizz").value;
+    imagemQuizz = document.querySelector(".imagem-quizz").value;
     qtdPerguntas = document.querySelector(".qtd-perguntas").value;
     qtdNiveis = document.querySelector(".qtd-niveis").value;
     
-    if(tituloQuizz.length >= 20 && tituloQuizz.length <= 65 && parseInt(qtdPerguntas) >= 3 && parseInt(qtdNiveis) >= 2 && verificarURL.test(imagemQuizz)) {
+    if(tituloQuizz.length >= 20 
+        && tituloQuizz.length <= 65 
+        && parseInt(qtdPerguntas) >= 3 
+        && parseInt(qtdNiveis) >= 2 
+        && verificarURL.test(imagemQuizz)) {
 
     const infosBasicas = document.querySelector(".informacoes-basicas");
     infosBasicas.classList.remove("mostrar");
@@ -312,17 +318,11 @@ function mostrarInputNiveis(inputReduzido) {
     
 }
 
-let textoPergunta;
-let corPergunta;
-let respostaCorreta;
-let URLcorreta;
-let respostaIncorreta1;
-let URLincorreta1;
-let respostaIncorreta2;
-let URLincorreta2;
-let respostaIncorreta3;
-let URLincorreta3;
 let permissaoPerguntas = 0;
+let arrayPerguntas = [];
+let arrayPerguntasPush;
+let arrayNiveis = [];
+let arrayNiveisPush;
 
 function irParaCriarNiveis() {
 
@@ -330,28 +330,40 @@ function irParaCriarNiveis() {
     const verificarURL = /^http:|https:/i;
 
     for(let i = 1; i <= qtdPerguntas; i++) {
-    textoPergunta = document.querySelector(`.texto-pergunta${i}`).value;
-    corPergunta = document.querySelector(`.cor-pergunta${i}`).value;
-    respostaCorreta = document.querySelector(`.resposta-correta${i}`).value;
-    URLcorreta = document.querySelector(`.URL-imagem-correta${i}`).value;
-    respostaIncorreta1 = document.querySelector(`.resposta-incorreta${i}1`).value;
-    URLincorreta1 = document.querySelector(`.URL-imagem-incorreta${i}1`).value;
-    respostaIncorreta2 = document.querySelector(`.resposta-incorreta${i}2`).value;
-    URLincorreta2 = document.querySelector(`.URL-imagem-incorreta${i}2`).value;
-    respostaIncorreta3 = document.querySelector(`.resposta-incorreta${i}3`).value;
-    URLincorreta3 = document.querySelector(`.URL-imagem-incorreta${i}3`).value;
-    
+    const textoPergunta = document.querySelector(`.texto-pergunta${i}`).value;
+    const corPergunta = document.querySelector(`.cor-pergunta${i}`).value;
+    const respostaCorreta = document.querySelector(`.resposta-correta${i}`).value;
+    const URLcorreta = document.querySelector(`.URL-imagem-correta${i}`).value;
+    const respostaIncorreta1 = document.querySelector(`.resposta-incorreta${i}1`).value;
+    const URLincorreta1 = document.querySelector(`.URL-imagem-incorreta${i}1`).value;
+    const respostaIncorreta2 = document.querySelector(`.resposta-incorreta${i}2`).value;
+    const URLincorreta2 = document.querySelector(`.URL-imagem-incorreta${i}2`).value;
+    const respostaIncorreta3 = document.querySelector(`.resposta-incorreta${i}3`).value;
+    const URLincorreta3 = document.querySelector(`.URL-imagem-incorreta${i}3`).value;
+
         if(textoPergunta.length >= 20
             && verificarHexa.test(corPergunta)
             && respostaCorreta !== ""
             && respostaIncorreta1 !== ""
-            && verificarURL.test(URLcorreta)) {
+            && verificarURL.test(URLcorreta)
+            && verificarURL.test(URLincorreta1)) {
             permissaoPerguntas++;
+
+            if(respostaIncorreta2 === "") {
+                arrayPerguntasPush = {title: textoPergunta, color: corPergunta, answers: [{ text: respostaCorreta, image: URLcorreta, isCorrectAnswer: true}, {text: respostaIncorreta1, image: URLincorreta1, isCorrectAnswer: false}] }
+            } else if(respostaIncorreta2 !== "") {
+                arrayPerguntasPush = {title: textoPergunta, color: corPergunta, answers: [{ text: respostaCorreta, image: URLcorreta, isCorrectAnswer: true}, {text: respostaIncorreta1, image: URLincorreta1, isCorrectAnswer: false}, {text: respostaIncorreta2, image: URLincorreta2, isCorrectAnswer: false}] }
+            } else if(respostaIncorreta2 !== "") {
+                arrayPerguntasPush = {title: textoPergunta, color: corPergunta, answers: [{ text: respostaCorreta, image: URLcorreta, isCorrectAnswer: true}, {text: respostaIncorreta1, image: URLincorreta1, isCorrectAnswer: false}, {text: respostaIncorreta2, image: URLincorreta2, isCorrectAnswer: false}, {text: respostaIncorreta3, image: URLincorreta3, isCorrectAnswer: false}] }
+            }
+
+            arrayPerguntas.push(arrayPerguntasPush);
         }
     }
 
     console.log(permissaoPerguntas);
     console.log(qtdPerguntas);
+   
     
     if(permissaoPerguntas == qtdPerguntas) {
     const CriarNiveis = document.querySelector(".criar-níveis");
@@ -362,8 +374,11 @@ function irParaCriarNiveis() {
     } else {
         alert("Preencha os dados corretamente.");
         permissaoPerguntas = 0;
+        arrayPerguntas = [];
     }
 }
+
+console.log(arrayPerguntas);
 
 let permissaoNiveis = 0;
 let tituloNivel;
@@ -412,6 +427,9 @@ function finalizarQuizz() {
             && descricaoNivel.length >= 30
             && verifica0) {
             permissaoNiveis++;
+            
+            arrayNiveisPush = {title: tituloNivel, image: urlImagemNivel, text: descricaoNivel, minValue: parseInt(acertoMinimo)}
+            arrayNiveis.push(arrayNiveisPush);
         }
     }
     
@@ -424,7 +442,13 @@ function finalizarQuizz() {
     } else {
         alert("Preencha os dados corretamente.");
         permissaoNiveis = 0;
+        arrayNiveis = [];
     }
+
+    const objQuizz = {title: tituloQuizz, image: imagemQuizz, questions: arrayPerguntas, levels: arrayNiveis}
+
+    const enviarQuizz = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', objQuizz);
+
 }
 
 function voltarInicio() {
@@ -439,3 +463,7 @@ const URL = "algumacoisaaimano"
 const sla = "#f23a56";
 
 console.log(verificarURL.test(URL));
+
+console.log(arrayNiveis);
+
+console.log(parseInt('9'));
