@@ -18,15 +18,14 @@
     <main class="lista-quizzes">
         <section class="criarQuizz">
             <h3>Você não criou nenhum<br>quizz ainda :(</h3>
-            <div class="botao-criar-quizz" onclick="irParaInformacoesBasicas()">Criar Quizz</div>
+            <div class="botao-criar-quizz" onclick="irParaInformacoesBasicas()" data-identifier="create-quizz">Criar Quizz</div>
         </section>
-        <section class="quizzesDoUsuario esconder">
+        <section class="quizzesDoUsuario esconder" data-identifier="user-quizzes">
             <div class="flex">
-                <h2>Seus Quizzes</h2><ion-icon name="add-circle" onclick="irParaInformacoesBasicas()">
-                </ion-icon></h2>
+                <h2>Seus Quizzes</h2><ion-icon name="add-circle" onclick="irParaInformacoesBasicas()" data-identifier="create-quizz"></ion-icon></h2>
             </div>
         </section>
-        <section class="todosOsQuizzes">
+        <section class="todosOsQuizzes" data-identifier="general-quizzes">
             <h2>Todos os Quizzes</h2>
         </section>
     </main>

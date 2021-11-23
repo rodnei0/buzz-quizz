@@ -36,7 +36,9 @@ function listarQuizzes(elemento) {
             for (let k = 0; k < idQuizzesDoUsuario.length; k++) {
                 if (idQuizzesDoUsuario[k] === quizzes[i].id) {
                     arrayDeQuizzesDoUsuario.push(`
-                        <div class="quizzes" onclick="irParaQuizz(${quizzes[i].id})">
+                        <div class="quizzes" onclick="irParaQuizz(${quizzes[i].id}) data-identifier="quizz-card"">
+                            <div class="gradientePreto"></div>
+                            <img src="${quizzes[i].image}" alt="imagemQuizz"></img>
                             <p>${quizzes[i].title}</p>
                         </div>
                     `);
@@ -44,7 +46,9 @@ function listarQuizzes(elemento) {
             }
         }
         arrayDeQuizzes.push(`
-            <div class="quizzes" onclick="irParaQuizz(${quizzes[i].id})">
+            <div class="quizzes" onclick="irParaQuizz(${quizzes[i].id}) data-identifier="quizz-card"">
+                <div class="gradientePreto"></div>
+                <img src="${quizzes[i].image}" alt="imagemQuizz"></img>
                 <p>${quizzes[i].title}</p>
             </div>
         `);
@@ -56,14 +60,6 @@ function listarQuizzes(elemento) {
 
     const quizzesDoUsuario = document.querySelector(".quizzesDoUsuario");
     quizzesDoUsuario.innerHTML += arrayDeQuizzesDoUsuario.join("");
-
-    const background = document.querySelectorAll(".quizzes");
-    for (let i = 0; i < background.length; i++) {
-        background[i].style.cssText = 
-            `background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizzes[i].image});`+
-            `background-position: center;`+
-	        `background-size: cover;`
-    }
 }
 
 function obterInformacoesQuizz(id) {
@@ -467,7 +463,7 @@ function finalizarQuizz() {
         }
     }
     
-    if(permissaoNiveis == qtdNiveis) {
+    if(permissaoNiveis === qtdNiveis) {
         const CriarNiveis = document.querySelector(".criar-níveis");
         CriarNiveis.classList.remove("mostrar");
     
@@ -485,7 +481,7 @@ function finalizarQuizz() {
     enviarQuizz.then(sucessoEnviarQuizz);
 
     const imgfinal = document.querySelector(".imagem-quizz-pronto");
-    imgfinal.innerHTML = `<img src="${imagemQuizz}" alt="imagem quizz">`
+    imgfinal.innerHTML = `<div class="gradientePreto"></div><img src="${imagemQuizz}" alt="imagem quizz">`
 }
 
 let idQuizzesDoUsuario = []
