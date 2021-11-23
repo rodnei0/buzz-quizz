@@ -13,7 +13,6 @@ function listarQuizzes(elemento) {
         const idsSerializados = localStorage.getItem("id");
         idQuizzesDoUsuario = JSON.parse(idsSerializados);
 
-        console.log("entrei nessa bosta pq tem localstorage");
         const criarQuizz = document.querySelector(".criarQuizz");
         criarQuizz.classList.add("esconder");
         const quizzesDoUsuario = document.querySelector(".quizzesDoUsuario");
@@ -154,11 +153,7 @@ function marcarResposta(elemento) {
     
     setTimeout(scrollar, 2000, contador);
     const perguntas = document.querySelectorAll(".containerPergunta")
-    console.log("marquei");
-    console.log(contador);
-    console.log(perguntas.length);
     if (contador === perguntas.length) {
-        console.log("entrei");
         checarPontuacao(perguntas.length);
     }
     contador++;
@@ -494,7 +489,6 @@ function sucessoEnviarQuizz(elemento) {
 }
 
 function acessarQuizz() {
-    console.log("entrei");
     const listaQuizzes = document.querySelector(".quizz-pronto");
     listaQuizzes.classList.remove("mostrar");
     listaQuizzes.classList.add("esconder");
@@ -511,5 +505,3 @@ function voltarInicio() {
 }
 
 obterQuizzes();
-
-const verificarURL = /^http:|https:/i;
