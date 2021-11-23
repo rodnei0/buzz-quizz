@@ -417,6 +417,15 @@ main {
     height: 20px;
 }
 
+.imagem-quizz-pronto img {
+    width: 500px;
+    height: 266px;
+
+    margin-top: 40px;
+
+    border-radius: 20px;
+}
+
 /*-----------------------BOTÕES-------------------*/
 
 .botao-prosseguir {
