@@ -19,8 +19,6 @@ function listarQuizzes(elemento) {
         quizzesDoUsuario.classList.remove("esconder");
         quizzesDoUsuario.classList.add("mostrar");
     }
-
-    console.dir(idQuizzesDoUsuario);
     
     for (let i = 0; i < quizzes.length; i++) {
         if (localStorage.length > 0) {
