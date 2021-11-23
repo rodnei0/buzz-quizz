@@ -36,18 +36,18 @@ function listarQuizzes(elemento) {
             for (let k = 0; k < idQuizzesDoUsuario.length; k++) {
                 if (idQuizzesDoUsuario[k] === quizzes[i].id) {
                     arrayDeQuizzesDoUsuario.push(`
-                        <div class="quizzes" onclick="irParaQuizz(${quizzes[i].id}) data-identifier="quizz-card"">
+                        <div class="quizzes" onclick="irParaQuizz(${quizzes[i].id})" data-identifier="quizz-card"">
                             <div class="gradientePreto"></div>
                             <img src="${quizzes[i].image}" alt="imagemQuizz"></img>
                             <p>${quizzes[i].title}</p>
                         </div>
-                    `);
+                        `);
+                    }
                 }
             }
-        }
-        arrayDeQuizzes.push(`
-            <div class="quizzes" onclick="irParaQuizz(${quizzes[i].id}) data-identifier="quizz-card"">
-                <div class="gradientePreto"></div>
+            arrayDeQuizzes.push(`
+            <div class="quizzes" onclick="irParaQuizz(${quizzes[i].id})" data-identifier="quizz-card"">
+                <div class="gradientePreto"></div>   
                 <img src="${quizzes[i].image}" alt="imagemQuizz"></img>
                 <p>${quizzes[i].title}</p>
             </div>
